@@ -1,0 +1,19 @@
+<div class="header-container">
+  <div class="left">
+    <div class="logo"></div>
+    <h3>T-Track</h3>
+  </div>
+
+  <mat-icon  matButton [matMenuTriggerFor]="menu" >account_circle</mat-icon>
+  <mat-menu #menu="matMenu">
+<a mat-menu-item [routerLink]="['/dashboard/profile']">
+  <mat-icon>person_outline</mat-icon>
+  User Profile
+</a>
+
+  <button mat-menu-item (click)="logout()"><mat-icon >history_toggle_off</mat-icon>Logout</button>
+</mat-menu>
+  
+
+
+</div>

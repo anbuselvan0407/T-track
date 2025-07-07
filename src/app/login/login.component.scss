@@ -1,0 +1,165 @@
+
+@use '@angular/material' as mat;
+
+$custom-primary: mat.define-palette(mat.$indigo-palette, 500, 300, 700);
+$custom-accent: mat.define-palette(mat.$pink-palette, 500);
+
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+  )
+));
+
+@include mat.all-component-themes($custom-theme);
+
+
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  min-height: 100%; /* Fix here */
+  display: flex;
+  align-items: center;
+
+  .left-side {
+    width: 50%;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("/assets/girl.jpg");
+    background-position: center;
+background-repeat: no-repeat;
+  }
+
+  .right-side {
+    height: 100%;
+    width: 50%;
+    display: grid;
+    align-items:center;
+    justify-content:center;
+
+    .login-form {
+      width: 300px;
+
+      .form-heading{
+        font-size:18px;
+      }
+
+      .form-inp{
+        padding-left:10px;
+      }
+
+
+      input {
+        width: 280px;
+        height: 50px;
+        margin-bottom: 5px;
+        color:black;
+      }
+
+ .forget {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0px;
+
+  mat-checkbox {
+    margin-left: 0px;
+    font-size:12px;
+    white-space: nowrap; // ⚡ prevents breaking into new lines
+  }
+
+  a {
+    font-size:12px;
+    white-space: nowrap; // ⚡ prevents breaking into new lines
+    text-decoration: none;
+    color: #1976d2; // optional: Material blue
+  }
+}
+
+
+      .login{
+        height:40px;
+        width:300px;
+        background-color:#007bff;
+        border-radius:3px;
+        color:white;
+        border:none;
+      }
+
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        p{
+          margin-left:120px;
+        }
+
+        button {
+          width: 300px;
+          height: 40px;
+          border:none;
+          border-radius:3px;
+          font-size:13px;
+          font-weight:normal;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; // spacing between icon and text
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.facebook-btn {
+  background-color: #3b5998;
+  color: white;
+}
+
+.facebook-btn:hover {
+  background-color: darken(#3b5998, 10%);
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: white;
+}
+
+.google-btn:hover {
+  background-color: darken(#db4437, 10%);
+}
+
+.twitter-btn {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.twitter-btn:hover {
+  background-color: darken(#1da1f2, 10%);
+}

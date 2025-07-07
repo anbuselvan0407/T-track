@@ -1,0 +1,100 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vh;
+}
+
+
+.signup-container {
+  width: 100%;
+  min-height: 100%; /* Fix here */
+  display: flex;
+  align-items: center;
+
+  .left-side {
+    width: 50%;
+    height: 98vh;
+    background-size: cover;
+    background-image: url("/assets/girl.jpg");
+    background-position: center;
+background-repeat: no-repeat;
+  }
+
+    .right-side {
+    height: 100%;
+    width: 50%;
+    display: grid;
+    align-items:center;
+    justify-content:center;
+
+    .form{
+      display:flex;
+      flex-direction:column;
+
+
+      mat-form-field{
+
+        mat-label{
+          font-size:14px;
+        }
+        
+        mat-error{
+          font-size:12px;
+          display:inline;
+          margin-bottom:10px;
+        }
+
+      }
+
+    }
+
+
+    ::ng-deep{
+
+      .mat-mdc-text-field-wrapper{
+        height:50px;
+        width:300px;
+      }
+
+      .mat-mdc-form-field-bottom-align::before {
+    content: "";
+    
+    height: 10px;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    margin-bottom: 5px;
+}
+      
+    .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    cursor: inherit;
+    padding-bottom: 10px;
+}
+
+        .mat-mdc-raised-button{
+          width:300px;
+        }
+
+    }
+}
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+
+
+  button {
+    margin-top: 20px;
+    width: 200px;
+  }
+
+
+
+}
+

@@ -1,0 +1,27 @@
+<div class="container">
+
+<div class="left">
+<div class="box">
+
+  <div class="top">
+  <p><strong>Created by:</strong> {{ ticket.createdBy }}</p>
+  <p><strong>Status:</strong> {{ ticket.status }}</p>
+  </div>
+<div class="title"> 
+  <h2>{{ ticket.title }}</h2>
+</div>
+
+<div class="description">
+  <p>{{ ticket.description }}</p>
+</div>
+
+</div>
+</div>
+
+<div class="right">
+<button (click)="updateStatus('In Progress')">In Progress</button>
+<button (click)="updateStatus('In Review')">In Review</button>
+<button (click)="updateStatus('Done')">Done</button>
+<div>
+
+</div>

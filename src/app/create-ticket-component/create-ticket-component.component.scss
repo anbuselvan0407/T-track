@@ -1,0 +1,36 @@
+::ng-deep .cdk-overlay-container {
+
+    h1{
+        font-weight:bold;
+    }
+    .custom-dialog-panel {
+  display: flex;
+  flex-direction: column;
+  width: 800px !important;
+  height:550px;
+  max-width: 90vw;
+  padding: 20px;
+}
+
+        .mat-mdc-dialog-content{
+            display:flex;
+            flex-direction:column;
+
+            ::ng-deep .title{
+
+                .mdc-notched-outline{
+                    margin-top:10px;
+                }
+            }
+
+            ::ng-deep .description {
+    margin-bottom: 0;
+    height: 300px;
+
+    .mat-mdc-input-element{
+        height:250px;
+    }
+}
+        }
+
+}

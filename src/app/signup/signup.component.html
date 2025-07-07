@@ -1,0 +1,48 @@
+<div class="signup-container">
+
+<div class="left-side">
+
+</div>
+<div class="right-side">
+
+  
+  
+  
+  <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h2>Sign Up</h2>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="username" />
+      <mat-error *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+        Valid email is required
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field  appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+      <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+       
+      </button>
+      <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    
+    <div style="text-align:center;">
+    <button class="buton1" mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+      Register
+    </button>
+  </div>
+  </form>
+</div>
+</div>
