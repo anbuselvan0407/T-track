@@ -1,19 +1,76 @@
 <div class="ticket-container">
   <div class="left">
     <div class="box-border">
-      <div class="status-box">
-        <button mat-raised-button color="primary">Total</button>
-        <button mat-raised-button color="accent">In Progress</button>
-        <button mat-raised-button color="warn">In Review</button>
-        <button mat-raised-button color="success">Done</button>
-      </div>
+
+      <mat-card class="example-card1" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title><h2>Tickets</h2></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          <mat-card style="margin-top:0px;  "class="example-card total" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>Total</mat-card-title>
+                <p>{{ ticketCounts.total }}</p>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card-subtitle>Total number of tickets are available</mat-card-subtitle>
+              
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="example-card in-progress" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>In-Progress</mat-card-title>
+                <p>{{ ticketCounts.inProgress }}</p>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card-subtitle>Total number of tickets currently in "In Progress" status </mat-card-subtitle>
+          
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="example-card in-review" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>In-Review</mat-card-title>
+                <p> {{ ticketCounts.inReview }}</p>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card-subtitle>Total number of tickets currently in "In Review" status</mat-card-subtitle>
+              
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="example-card done" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>Done</mat-card-title>
+                <p> {{ ticketCounts.done }}</p>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card-subtitle>Total number of tickets currently in "Done" status</mat-card-subtitle>
+              
+            </mat-card-content>
+          </mat-card>
+          
+        </mat-card-content>
+        
+      </mat-card>
+      
     </div>
   </div>
 
   <div class="right">
     <div class="table-toolbar">
-<mat-form-field *ngIf="isAdmin" appearance="outline" class="small-form-field">
-  <mat-label>Filter</mat-label>
+<mat-form-field (click)="isClicked = !isClicked" *ngIf="isAdmin" appearance="outline" class="small-form-field">
+  <mat-label [class.clicked]="isClicked">Filter</mat-label>
   <mat-select [(value)]="selectedUser" (selectionChange)="applyFilter()">
     <mat-option *ngFor="let user of users" [value]="user">{{ user }}</mat-option>
   </mat-select>
@@ -42,13 +99,13 @@
       <!-- Title Column -->
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let ticket"> {{ ticket.title }} </td>
+        <td mat-cell *matCellDef="let ticket" class="ticket-column"> {{ ticket.title }} </td>
       </ng-container>
       
       <!-- Description Column -->
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let ticket"> {{ ticket.description }} </td>
+        <td mat-cell *matCellDef="let ticket" class="description-column"> {{ ticket.description }} </td>
       </ng-container>
       
       <!-- Created By Column -->
@@ -69,8 +126,8 @@
       </tr>
       
     </table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+  <mat-paginator class="paginator" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
     
     
   </div>

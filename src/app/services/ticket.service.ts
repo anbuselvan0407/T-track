@@ -39,4 +39,11 @@ private getAuthHeaders() {
   return { Authorization: `Bearer ${token}` };
 }
 
+getTicketCounts() {
+  return this.http.get<{ total: number; inProgress: number; inReview: number; done: number }>(
+    `${this.apiUrl}/counts`
+  );
+}
+
+
 }

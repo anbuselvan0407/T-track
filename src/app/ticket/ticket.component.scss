@@ -2,79 +2,135 @@
   height:100%;
   width:100%;
   display:flex;
-  align-items:center;
-
-
+  
+  
+  
   
   
   .left{
     width:30%;
     height:100%;
     display:flex;
-    align-items:center;
     justify-content:center;
+    margin-top:50px;
     
     .box-border{
-      
-      
-      .status-box {
-        display: flex;
-        flex-direction:column;
-        gap: 15px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        border:1px solid grey;
-        padding:50px 20px;
-        
-        
-        
-        button{
-          width:250px;
-          height:50px;
+      .example-card1{
+        max-width: 380px;
+        height:610px;
+        display:grid;
+
+        mat-card-title{
+          margin-top:0px;
         }
+        .example-card{
+          margin-top:10px;
+
+          mat-card-title-group{
+            display:flex;
+
+            mat-card-title{
+              font-weight:bold;
+              font-size:16px;
+              margin-top:10px;
+              margin-right:100px;
+            }
+
+            p{
+              margin-right:50px;
+              margin-top:0px;
+              font-size:24px;
+              font-weight:bold;
+              color:darkblue;
+            }
+          }
+        }
+        
       }
+      
       
     }
   }
   
   .right{
-  width:70%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding-right:30px;
-
-  .table-toolbar{
-    height:50px;
-    width:100%;
-    background-color:skyblue;
+    width:70%;
+    height:100%;
     display:flex;
-    justify-content:right;
-    align-items:center;
-
-
-    ::ng-deep .small-form-field {
+    flex-direction:column;
+    padding-right:20px;
+    margin-top:50px;
+    
+    .table-toolbar{
+      height:50px;
+      width:100%;
+      background-color:skyblue;
+      display:flex;
+      justify-content:right;
+      align-items:center;
       
-      width:100px;
-      height:35px;
-      margin-left:10px;
-      background-color:white;
-      border-radius:4px;
-      .mat-mdc-text-field-wrapper {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        height: 36px !important; // adjust height as needed
+      
+      ::ng-deep .small-form-field {
+        
+        width:100px;
+        height:35px;
+        margin-left:10px;
+        background-color:white;
+        border-radius:4px;
+        .mat-mdc-text-field-wrapper {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          height: 36px !important; // adjust height as needed
+        }
+        
+        .mat-mdc-form-field-flex {
+          height: 36px !important;
+        }
+        
+        .mat-mdc-select-trigger {
+          height: 36px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+        
+        .mat-mdc-select {
+          height: 36px !important;
+        }
+        
+        .mat-mdc-form-field-infix {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        
+        .mat-mdc-floating-label {
+          font-size:12px;
+          top: 16px !important; // adjust label position if needed
+        }
       }
       
-      .mat-mdc-form-field-flex {
-        height: 36px !important;
+      ::ng-deep mat-paginator mat-form-field{
+        
+        
+        width:70px;
+        .mat-mdc-text-field-wrapper {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          height: 36px !important; // adjust height as needed
+        }
+        
+        .mat-mdc-form-field-flex {
+          height: 36px !important;
+        }
+        
+        .mat-mdc-select-trigger {
+          height: 36px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
       }
       
-      .mat-mdc-select-trigger {
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
+      .create-ticket{
+        margin-right:50px;
+        margin-left:10px;
       }
       
       .mat-mdc-select {
@@ -86,85 +142,64 @@
         padding-bottom: 0 !important;
       }
       
-      .mat-mdc-floating-label {
-        top: 16px !important; // adjust label position if needed
-      }
-    }
-    
-    ::ng-deep mat-paginator mat-form-field{
-      
-      
-      width:70px;
-      .mat-mdc-text-field-wrapper {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        height: 36px !important; // adjust height as needed
-      }
-      
-      .mat-mdc-form-field-flex {
-        height: 36px !important;
-      }
-      
-      .mat-mdc-select-trigger {
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
-      }
-    }
-
-    .create-ticket{
-      margin-right:50px;
-      margin-left:10px;
-    }
-
-  .mat-mdc-select {
-    height: 36px !important;
-  }
-
-  .mat-mdc-form-field-infix {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
   .mat-mdc-floating-label {
     top: 16px !important; // adjust label position if needed
+    .clicked{
+      top:18px;
+      font-size:12px;
+    }
   }
-
-
-
+  
+  
+  
 }
 
 .table-wrapper{
-max-height:500px;
-overflow:auto;
-
-  .header{
-    position:sticky;
-    top:0px;
-    z-index:10;
-    font-weight:bold;
-    background-color:lightgrey;
-
+  min-height:500px;
+  max-height:500px;
+  overflow:auto;
+  background-color:white;
+  
+  .table{
+    background-color:white;
+    border-bottom:1px solid #ddd;
+    .header{
+      position:sticky;
+      top:0px;
+      z-index:10;
+      font-weight:bold;
+      background-color:lightgrey;
+      
+    }
+    
+    td.ticket-column{
+      max-width:150px;
+    }
+    
+    td.description-column {
+      max-width: 200px; /* adjust as needed */
+    }
   }
-
+  
   .paginator{
     position:sticky;
     bottom:0px;
     z-index:1;
   }
-
-
-    &::-webkit-scrollbar {
+  
+  
+  &::-webkit-scrollbar {
     display: none;
   }
-
+  
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
-
+  
 }
 
 
 }
+
 
 
 }

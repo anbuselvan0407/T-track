@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TicketService } from '../services/ticket.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-ticket-detail',
   templateUrl: './ticket-detail.component.html',
@@ -11,7 +11,7 @@ export class TicketDetailComponent implements OnInit {
   ticketId!: string;
   ticket: any = {};
 
-  constructor(private route: ActivatedRoute, private ticketService: TicketService) {}
+  constructor(private route: ActivatedRoute, private ticketService: TicketService, private router:Router) {}
 
 ngOnInit(): void {
   this.ticketId = this.route.snapshot.paramMap.get('id')!;
@@ -27,5 +27,9 @@ ngOnInit(): void {
       this.ticket.status = updated.status;
       alert('Status updated!');
     });
+  }
+
+  navigate(){
+    this.router.navigate(['/dashboard/ticket']);
   }
 }

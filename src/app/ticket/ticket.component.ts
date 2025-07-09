@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy,ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { TicketService } from '../services/ticket.service';
 import { CreateTicketComponentComponent } from '../create-ticket-component/create-ticket-component.component';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-
+import { Router,NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 export interface Ticket {
   _id: string;
   title: string;
@@ -17,7 +17,8 @@ export interface Ticket {
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+  styleUrls: ['./ticket.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TicketComponent implements OnInit {
 displayedColumns: string[] = ['id', 'title', 'description', 'status', 'createdBy'];
@@ -29,18 +30,30 @@ displayedColumns: string[] = ['id', 'title', 'description', 'status', 'createdBy
   isAdmin = false;
 
   originalTickets: any[] = [];
+  ticketCounts: any = {};
 
+  isClicked = false;
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private ticketService: TicketService, private dialog: MatDialog,private authService: AuthService, private router: Router) {}
+  constructor(private ticketService: TicketService, private dialog: MatDialog,private authService: AuthService, private router: Router,private cd: ChangeDetectorRef ) {}
 
 ngOnInit(): void {
   const role = this.authService.getUserRole();
   this.isAdmin = role === 'admin';
+  this.loadTicketCounts();
+  
+  this.router.events
+  .pipe(filter(event => event instanceof NavigationEnd))
+  .subscribe(() => {
+    if (this.router.url.includes('/dashboard/ticket')) {
+      this.loadTicketCounts();
+    }
+  });
   this.loadTickets();
 }
+
 
 
 loadTickets() {
@@ -51,6 +64,14 @@ this.ticketService.getTickets().subscribe((tickets: any[]) => {
   this.dataSource.paginator = this.paginator;
 });
 
+}
+
+loadTicketCounts() {
+  this.ticketService.getTicketCounts().subscribe(counts => {
+    this.ticketCounts = counts;
+    console.log(this.ticketCounts);
+     this.cd.markForCheck();
+  });
 }
 
 
