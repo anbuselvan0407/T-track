@@ -1,205 +1,348 @@
-.ticket-container{
-  height:100%;
-  width:100%;
-  display:flex;
-  
-  
-  
-  
-  
-  .left{
-    width:30%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:50px;
-    
-    .box-border{
-      .example-card1{
+.ticket-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  .left {
+    width: 30%;
+    height: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    .box-border {
+      .example-card1 {
         max-width: 380px;
-        height:610px;
-        display:grid;
+        height: 610px;
+        display: grid;
+        background-color:skyblue;
 
-        mat-card-title{
-          margin-top:0px;
+        mat-card-title {
+          margin-top: 0;
         }
-        .example-card{
-          margin-top:10px;
 
-          mat-card-title-group{
-            display:flex;
+        .example-card {
+          margin-top: 10px;
 
-            mat-card-title{
-              font-weight:bold;
-              font-size:16px;
-              margin-top:10px;
-              margin-right:100px;
+          mat-card-title-group {
+            display: flex;
+
+            mat-card-title {
+              font-weight: bold;
+              font-size: 16px;
+              margin-top: 10px;
             }
 
-            p{
-              margin-right:50px;
-              margin-top:0px;
-              font-size:24px;
-              font-weight:bold;
-              color:darkblue;
+            p {
+              margin-right: 50px;
+              margin-top: 0;
+              font-size: 24px;
+              font-weight: bold;
+              color: darkblue;
             }
+
+
           }
         }
-        
       }
-      
-      
     }
   }
-  
-  .right{
-    width:70%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    padding-right:20px;
-    margin-top:50px;
-    
-    .table-toolbar{
-      height:50px;
-      width:100%;
-      background-color:skyblue;
-      display:flex;
-      justify-content:right;
-      align-items:center;
-      
-      
+
+
+  .example-card.total {
+  background-color: #f5f5f5; // Light gray
+  border-left: 5px solid #757575; // Dark gray accent
+}
+
+.example-card.in-progress {
+  background-color: #fff3e0; // Light orange
+  border-left: 5px solid #ff9800; // Deep orange
+}
+
+.example-card.in-review {
+  background-color: #e3f2fd; // Light blue
+  border-left: 5px solid #2196f3; // Bright blue
+}
+
+.example-card.done {
+  background-color: #e8f5e9; // Light green
+  border-left: 5px solid #4caf50; // Green
+}
+
+.example-card.active {
+  border: 2px solid #1976d2;
+  box-shadow: 0 0 8px rgba(25, 118, 210, 0.5);
+}
+
+
+
+  .right {
+    width: 70%;
+    height: 100%;
+    padding-right: 20px;
+    margin-top: 20px;
+
+    .table-toolbar {
+      height: 50px;
+      width: 100%;
+      background-color: skyblue;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+
+
+
+
+      ::ng-deep .search-form-field {
+  width: 200px;
+  margin-left: 15px;
+  height:20px;
+
+
+
+
+  .mat-mdc-form-field-flex {
+    height: 36px !important;
+  }
+
+  .mat-mdc-floating-label {
+    font-size: 12px;
+    bottom: 21px !important;
+
+    &.clicked {
+      top: 20px;
+      font-size: 12px;
+    }
+  }
+
+  .mat-mdc-text-field-wrapper{
+    background-color: white;
+    border-radius:5px;
+  }
+
+  .mdc-text-field__input{
+    margin-top:-50px;
+  }
+  // .mat-mdc-select-trigger {
+    //   height: 36px !important;
+    //   display: flex !important;
+    //   align-items: center !important;
+    // }
+
+    // .mat-mdc-select {
+      //   height: 36px !important;
+      // }
+
+      input{
+        margin-bottom:15px;
+      }
+
+      .mat-mdc-input-element::placeholder {
+        font-size: 12px;
+
+      }
+      ::ng-deep input.mat-input-element::placeholder {
+        line-height: 1.5;
+        font-size: 13px; /* smaller if you want */
+      }
+
+
+      .mat-mdc-floating-label {
+        top: 16px !important; // adjust label position if needed
+        bottom:30px;
+      }
+
+      .mat-mdc-floating-label::after{
+        top: 25px !important;
+      }
+
+    }
+
+
+
+
+
+
       ::ng-deep .small-form-field {
-        
-        width:100px;
-        height:35px;
-        margin-left:10px;
-        background-color:white;
-        border-radius:4px;
+        width: 100px;
+        height: 35px;
+        margin-left: 10px;
+        background-color: white;
+        border-radius: 4px;
+
         .mat-mdc-text-field-wrapper {
           padding-top: 0 !important;
           padding-bottom: 0 !important;
-          height: 36px !important; // adjust height as needed
+          height: 36px !important;
         }
-        
+
         .mat-mdc-form-field-flex {
           height: 36px !important;
         }
-        
+
         .mat-mdc-select-trigger {
           height: 36px !important;
           display: flex !important;
           align-items: center !important;
         }
-        
+
         .mat-mdc-select {
           height: 36px !important;
         }
-        
+
         .mat-mdc-form-field-infix {
           padding-top: 0 !important;
           padding-bottom: 0 !important;
         }
-        
+        // .mat-mdc-select {
+        //   height: 36px !important;
+        // }
+
+        // .mat-mdc-form-field-infix {
+        //   padding-top: 0 !important;
+        //   padding-bottom: 0 !important;
+        // }
+
         .mat-mdc-floating-label {
-          font-size:12px;
-          top: 16px !important; // adjust label position if needed
+          font-size: 12px;
+          top: 25px !important;
+
+          &.clicked {
+            top: 25px;
+            font-size: 28px;
+          }
         }
       }
-      
-      ::ng-deep mat-paginator mat-form-field{
-        
-        
-        width:70px;
-        .mat-mdc-text-field-wrapper {
-          padding-top: 0 !important;
-          padding-bottom: 0 !important;
-          height: 36px !important; // adjust height as needed
+
+      .create-ticket {
+        margin-right: 50px;
+        margin-left: 10px;
+      }
+    }
+
+    .table-wrapper {
+      max-height: 500px;
+      min-height:500px;
+      overflow: auto;
+      background-color: white;
+
+      .table {
+        background-color: white;
+        border-bottom: 1px solid #ddd;
+
+        .header {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          font-weight: bold;
+          background-color: lightgrey;
         }
-        
-        .mat-mdc-form-field-flex {
-          height: 36px !important;
+
+        .mat-row {
+          cursor: pointer;
         }
-        
-        .mat-mdc-select-trigger {
-          height: 36px !important;
-          display: flex !important;
-          align-items: center !important;
+
+        td.ticket-column,
+        td.description-column {
+          max-width: 200px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
+
       }
-      
-      .create-ticket{
-        margin-right:50px;
-        margin-left:10px;
+
+      .paginator {
+        border-top:2px solid grey;
+        position: sticky;
+        bottom: 0;
+        z-index: 1;
       }
-      
-      .mat-mdc-select {
-        height: 36px !important;
+
+      &::-webkit-scrollbar {
+        display: none;
       }
-      
-      .mat-mdc-form-field-infix {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
-      
-  .mat-mdc-floating-label {
-    top: 16px !important; // adjust label position if needed
-    .clicked{
-      top:18px;
-      font-size:12px;
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   }
-  
-  
-  
 }
 
-.table-wrapper{
-  min-height:500px;
-  max-height:500px;
-  overflow:auto;
-  background-color:white;
-  
-  .table{
-    background-color:white;
-    border-bottom:1px solid #ddd;
-    .header{
-      position:sticky;
-      top:0px;
-      z-index:10;
-      font-weight:bold;
-      background-color:lightgrey;
-      
-    }
-    
-    td.ticket-column{
-      max-width:150px;
-    }
-    
-    td.description-column {
-      max-width: 200px; /* adjust as needed */
-    }
-  }
-  
-  .paginator{
-    position:sticky;
-    bottom:0px;
-    z-index:1;
-  }
-  
-  
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
-  
-}
-
-
+.paginator-wrapper {
+  border-top: 1px solid grey;
 }
 
 
 
+        ::ng-deep .small-form-field .mat-form-field-label.mat-form-field-floating {
+  font-size: 10px;
+  top: -2.8rem; /* adjust as needed */
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .ticket-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+    .left {
+      width: 100%;
+      margin-top: 10px;
+
+      .example-card1 {
+        max-width: 95%;
+        height: auto;
+
+        .example-card {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .right {
+      width: 100%;
+      margin-top: 15px;
+      padding-right: 0;
+
+      .table-toolbar {
+        flex-direction: column;
+        align-items:stretch;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        background-color: skyblue;
+
+        ::ng-deep .small-form-field {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        .create-ticket {
+          width: 100%;
+          margin: 10px 0;
+        }
+      }
+
+      .table-wrapper {
+        max-height: none;
+        overflow-x: auto;
+        margin-top: 10px;
+
+        .table {
+          min-width: 600px;
+        }
+      }
+    }
+  }
+}
+
+
+
+::ng-deep .mat-input-element::placeholder {
+  padding-bottom: 10px;
+  font-size: 12px;
+  color: gray;
 }

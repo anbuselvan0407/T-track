@@ -1,36 +1,72 @@
 <div class="container">
-  
+
   <div class="left">
-    <div><mat-icon (click)="navigate()">arrow_back</mat-icon>
-</div>
     <div class="box">
-      
+      <div>
+        <mat-icon (click)="navigate()">arrow_back</mat-icon>
+      </div>
+
       <div class="top">
         <p><strong style="margin-right:5px;">Created by:</strong> {{ ticket.createdBy }}</p>
         <p><strong style="margin-right:5px;">Status:</strong> {{ ticket.status }}</p>
       </div>
-      
+
       <h3>Title</h3>
-      <div class="title"> 
-        <p>{{ ticket.title }}</p>
-      </div>
-      
-      <h3>Description</h3>
-      <div class="description">
-        <p>{{ ticket.description }}</p>
-      </div>
-      
-    </div>
+<div class="title" (click)="!editingTitle && startEditTitle()">
+  <ng-container *ngIf="!editingTitle">
+    <p>{{ ticket.title }}</p>
+  </ng-container>
+  <ng-container *ngIf="editingTitle">
+    <input [(ngModel)]="tempTitle" class="input-style" type="text" />
+    <button (click)="saveTitle()">✔</button>
+  </ng-container>
+</div>
+
+
+
+<div class="pdf">
+  
+  <div class="pdf-upload">
+    <h3>Upload PDF</h3>
+    <input type="file" accept="application/pdf" (change)="onFileSelected($event)">
+    
+  </div>
+  <div class="pdf-link" *ngIf="ticket.pdfBinary" style="padding-top:50px;">
+    <a [href]="'http://localhost:5000/api/tickets/' + ticket._id + '/pdf'" target="_blank">
+      <mat-icon style="vertical-align: middle; margin-right: 4px; color: #e53935;">picture_as_pdf</mat-icon>
+      View PDF
+    </a>
   </div>
   
+</div>
+
+
+<h3>Description</h3>
+<div class="description" (click)="!editingDescription && startEditDescription()">
+  <ng-container *ngIf="!editingDescription">
+    <p>{{ ticket.description }}</p>
+  </ng-container>
+  <ng-container *ngIf="editingDescription">
+    <textarea [(ngModel)]="tempDescription" rows="4" class="input-style"></textarea>
+  </ng-container>
+</div>
+
+<div class="exapmle-button-row" style="display:flex; justify-content:right; gap:10px;">
+  <button matButton="filled" (click)="saveDescription()">Save</button>
+  <button matButton="filled" (click)="cancelDescription()">Cancel</button>
+</div>
+    </div>
+  </div>
+
   <div class="right">
     <p>Update Status</p>
     <hr>
     <div class="button-box">
-      
       <button (click)="updateStatus('In Progress')">In Progress</button>
       <button (click)="updateStatus('In Review')">In Review</button>
       <button (click)="updateStatus('Done')">Done</button>
     </div>
-    
   </div>
+
+
+</div>

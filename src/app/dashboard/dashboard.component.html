@@ -2,41 +2,53 @@
 <app-header></app-header>
 <div>
 <mat-drawer-container class="example-container">
-  <button mat-icon-button (click)="drawer.toggle()" style="margin: 10px; height:50px; width:50px;">
-<mat-icon>menu</mat-icon>
-</button>
-  <mat-drawer #drawer mode="side" opened>
+  <mat-drawer
+  class="drawer"
+  #drawer
+  mode="side"
+  opened
+  [class.collapsed]="!isExpanded"
+>
 
 
 
-    <mat-nav-list>
+
+<mat-nav-list>
 
   <!-- Ticket (shown to both admin & maintainer) -->
   <a mat-list-item routerLink="/dashboard/ticket" routerLinkActive="active-link"
-     *ngIf="userRole === 'admin' || userRole === 'maintainer'">
-    <div style="display: flex; align-items: center;">
-      <mat-icon>confirmation_number</mat-icon>
-      <span class="nav-text">Ticket</span>
-    </div>
-  </a>
+  *ngIf="userRole === 'admin' || userRole === 'maintainer'">
+  <div style="display: flex; align-items: center;">
+    <mat-icon>confirmation_number</mat-icon>
+    <span class="nav-text">Ticket</span>
+  </div>
+</a>
 
-  <!-- Employee (shown only to admin) -->
-  <a mat-list-item routerLink="/dashboard/employee" routerLinkActive="active-link"
-     *ngIf="userRole === 'admin'">
-    <div style="display: flex; align-items: center;">
-      <mat-icon>people</mat-icon>
-      <span class="nav-text">Employee</span>
-    </div>
-  </a>
+<!-- Employee (shown only to admin) -->
+<a mat-list-item routerLink="/dashboard/employee" routerLinkActive="active-link"
+*ngIf="userRole === 'admin'">
+<div style="display: flex; align-items: center;">
+  <mat-icon>people</mat-icon>
+  <span class="nav-text">Employee</span>
+</div>
+</a>
 
 </mat-nav-list>
 
 
-  </mat-drawer>
+</mat-drawer>
 
-  <mat-drawer-content>
+<mat-drawer-content>
+  <div class="wrapper-container" >
+    <div class="menu" style="background-color: white;   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1); position: sticky; top: 0px;z-index: 500; ">
+  <button style="margin:15px; border:none; background-color: white;" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</div>
 
-<router-outlet></router-outlet>
-  </mat-drawer-content>
+
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-content>
 </mat-drawer-container>
 </div>

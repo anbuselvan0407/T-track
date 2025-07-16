@@ -16,8 +16,8 @@ body {
     padding:0px 15px;
     justify-content:space-between;
     align-items:center;
-    background-color:skyblue;
-    
+    background-color:rgb(129, 205, 235);
+
     position:sticky;
     top:0px;
     z-index:100;
@@ -33,17 +33,17 @@ body {
             border-radius:50%;
             background-color:white;
             margin-right:10px;
-            
+
         }
     }
-        
 
-            
+
+
             mat-icon{
                 height:30px;
                 width:30px;
                 font-size:30px;
             }
-    
+
 
 }

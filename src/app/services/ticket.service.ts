@@ -10,11 +10,17 @@ export class TicketService {
 
   constructor(private http: HttpClient) {}
 
-  getTickets(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(this.apiUrl, { headers });
-  }
+getTickets(page: number = 1, limit: number = 10, status?: string, createdBy?: string): Observable<any> {
+  const token = localStorage.getItem('token');
+  let query = `?page=${page}&limit=${limit}`;
+  if (status) query += `&status=${status}`;
+  if (createdBy) query += `&createdBy=${createdBy}`;
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.apiUrl}${query}`, { headers });
+}
+
+
+
 
   createTicket(data: { title: string; description: string }): Observable<any> {
     const token = localStorage.getItem('token');
@@ -33,6 +39,24 @@ updateTicketStatus(id: string, status: string) {
     headers: this.getAuthHeaders()
   });
 }
+
+updateTicketDetails(id: string, data: { title: string; description: string }): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.put(`${this.apiUrl}/${id}/details`, data, { headers });
+}
+
+
+uploadPdf(ticketId: string, formData: FormData): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  return this.http.post(`http://localhost:5000/api/tickets/${ticketId}/upload-pdf`, formData, {
+    headers,
+  });
+}
+
+
 
 private getAuthHeaders() {
   const token = localStorage.getItem('token');

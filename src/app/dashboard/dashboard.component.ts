@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class DashboardComponent implements OnInit {
 
   userRole: string | null = null;
+  isExpanded = true;
 
   constructor(private authService: AuthService) {}
 
@@ -17,4 +18,8 @@ export class DashboardComponent implements OnInit {
     console.log('User Role:', this.userRole);
   }
 
+
+  toggleDrawer() {
+  this.isExpanded = !this.isExpanded;
+}
 }

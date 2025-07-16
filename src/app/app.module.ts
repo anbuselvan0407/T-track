@@ -30,7 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     EmployeeComponent,
     ProfileComponent,
     CreateTicketComponentComponent,
-    TicketDetailComponent
+    TicketDetailComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatDividerModule
 
 
 

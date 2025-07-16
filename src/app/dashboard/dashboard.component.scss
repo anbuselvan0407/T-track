@@ -10,15 +10,14 @@ body {
 .example-container {
   width: 100%;
   height: calc(100vh - 60px);
+  overflow:auto;
   /* The background property is added to clearly distinguish the borders between drawer and main
      content */
   background: #eee;
 
   mat-drawer{
-    background-color:white;
-    width:250px;
-    
-    
+   background-color:white;
+    width:200px;
 
     .active-link {
   background-color: rgba(0, 0, 0, 0.1);
@@ -31,9 +30,30 @@ body {
     }
 
     mat-darwer-content{
-      height: calc(100% - 40px);
+      height: calc(100% - 60px);
+
+      .wrapper-container {
+  overflow: auto;
+
+
+  .menu{
+    border-bottom: 1px solid grey;
+    height: 100px;
+    width: 500px;
+    background-color: aquamarine;
+    display: flex; /* To center the button horizontally */
+    align-items: center;
+    justify-content: center;
+  }
+}
 
     }
   }
 
 }
+
+
+
+
+
+

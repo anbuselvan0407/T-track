@@ -12,6 +12,7 @@ export interface Ticket {
   title: string;
   description: string;
   createdBy: string;
+  status: string;
 }
 
 @Component({
@@ -29,8 +30,15 @@ displayedColumns: string[] = ['id', 'title', 'description', 'status', 'createdBy
   currentUserRole: string = '';
   isAdmin = false;
 
+  totalItems=0;
+  page=1;
+  limit=10;
+
   originalTickets: any[] = [];
   ticketCounts: any = {};
+
+  selectedStatus: string = '';
+
 
   isClicked = false;
 
@@ -43,7 +51,7 @@ ngOnInit(): void {
   const role = this.authService.getUserRole();
   this.isAdmin = role === 'admin';
   this.loadTicketCounts();
-  
+
   this.router.events
   .pipe(filter(event => event instanceof NavigationEnd))
   .subscribe(() => {
@@ -52,18 +60,53 @@ ngOnInit(): void {
     }
   });
   this.loadTickets();
+
+  this.dataSource.filterPredicate = (data: Ticket, filter: string): boolean => {
+    const search = filter.trim().toLowerCase();
+    return (
+      data.title?.toLowerCase().includes(search) ||
+      data.description?.toLowerCase().includes(search) ||
+      data.createdBy?.toLowerCase().includes(search) ||
+      data.status?.toLowerCase().includes(search) ||
+      data._id?.toLowerCase().includes(search)
+    );
+  };
+}
+
+
+ngAfterViewInit() {
+  this.paginator.page.subscribe(() => {
+    this.page = this.paginator.pageIndex + 1;
+    this.limit = this.paginator.pageSize;
+    this.loadTickets();
+  });
 }
 
 
 
-loadTickets() {
-this.ticketService.getTickets().subscribe((tickets: any[]) => {
-  this.originalTickets = tickets;
-  this.dataSource.data = tickets;
-  this.users = [...new Set(tickets.map((t: any) => t.createdBy))];
-  this.dataSource.paginator = this.paginator;
-});
+applyGlobalFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
 
+  // Reset paginator
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
+  }
+}
+
+
+
+
+loadTickets() {
+  this.ticketService.getTickets(this.page, this.limit, this.selectedStatus, this.selectedUser).subscribe(res => {
+    console.log(res);
+    this.originalTickets = res.tickets;
+    this.dataSource.data = res.tickets;
+    this.totalItems = res.total;
+
+    this.users = [...new Set(res.tickets.map((t: any) => t.createdBy))] as string[];
+    this.cd.markForCheck();
+  });
 }
 
 loadTicketCounts() {
@@ -76,17 +119,14 @@ loadTicketCounts() {
 
 
 applyFilter() {
-  if (this.selectedUser) {
-    this.dataSource.data = this.originalTickets.filter(t => t.createdBy === this.selectedUser);
-  } else {
-    this.dataSource.data = this.originalTickets;
-  }
-
-  // Reset paginator to first page after filtering
-  if (this.paginator) {
-    this.paginator.firstPage();
-  }
+  this.page = 1;
+  this.paginator.firstPage();
+  this.loadTickets();
 }
+
+
+
+
 
 
   openCreateTicketDialog() {
@@ -107,5 +147,15 @@ openTicketDetail(row: any) {
   console.log('Row clicked, navigating to', row._id);
   this.router.navigate(['/dashboard/ticket', row._id]);
 }
+
+
+filterByStatus(status: string) {
+  this.selectedStatus = status;
+  this.page = 1;
+  this.paginator.firstPage();
+  this.loadTickets();
+}
+
+
 
 }
